@@ -6,8 +6,8 @@ using Firebase.Auth;
 public class MasterAccountLogin : MonoBehaviour
 {
     private FirebaseAuth master;
-    private string email = "tmdwns711@naver.com";
-    private string password = "tmdghkswns1!";
+    private string email = "yourEmail@naver.com";
+    private string password = "yourSecret";
 
     public void MasterLogin()
     {

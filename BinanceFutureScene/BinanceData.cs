@@ -6,7 +6,7 @@ using Debug = UnityEngine.Debug;
 using TMPro;
 using System;
 using System.Linq;
-public class BinanceData : MonoBehaviour//∏∂¡ˆ∏∑ ¿Œµ¶Ω∫∞° ∞°¿Â √÷±Ÿ ƒµµÈ¿Ã¥Ÿ.
+public class BinanceData : MonoBehaviour//ÎßàÏßÄÎßâ Ïù∏Îç±Ïä§Í∞Ä Í∞ÄÏû• ÏµúÍ∑º Ï∫îÎì§Ïù¥Îã§.
 {
     [SerializeField] private GameObject indicatorCalculation;
     [SerializeField] private TMP_Text candle_Futre_BTC;
@@ -81,11 +81,11 @@ public class BinanceData : MonoBehaviour//∏∂¡ˆ∏∑ ¿Œµ¶Ω∫∞° ∞°¿Â √÷±Ÿ ƒµµÈ¿Ã¥Ÿ.
         candleData.Clear();
         closingPrices.Clear();
 
-        string newJson = json.Substring(2, json.Length - 4);// πÆ¿⁄ø≠ æÁ ø∑¿« [[ øÕ ]] ¡¶∞≈
+        string newJson = json.Substring(2, json.Length - 4);// Î¨∏ÏûêÏó¥ Ïñë ÏòÜÏùò [[ ÏôÄ ]] Ï†úÍ±∞
         candleData.AddRange(newJson.Split("],[").Select(x => x.Split(",").ToList()));
         foreach (var candle in candleData)
         {
-            closingPrices.Add(float.Parse(candle[4].Substring(1, candle[4].Length - 2)));
+            closingPrices.Add(float.Parse(candle[4].Substring(1, candle[4].Length - 2)));//Ï¢ÖÍ∞ÄÎç∞Ïù¥ÌÑ∞ Ï∂îÏ∂ú
         }
         if(_interval == "1m")
         {
@@ -157,4 +157,3 @@ public class CandleDataArray
 {
     public List<List<string>> list;
 }
-//price = getString.Substring(getString.IndexOf("price") + 8, 8);

@@ -30,7 +30,7 @@ public class GoldenCross : MonoBehaviour
         intervalToUse5_20 = new string[count];
         if(count == 0)
         {
-            Debug.Log("intervalÀÌ ºñ¾î ÀÖ½À´Ï´Ù.");
+            Debug.Log("intervalì´ ë¹„ì–´ ìˆìŠµë‹ˆë‹¤.");
             return;
         }
         for (int i = 0; i < count; i++)
@@ -44,7 +44,7 @@ public class GoldenCross : MonoBehaviour
         intervalToUse50_200 = new string[count2];
         if (count2 == 0)
         {
-            Debug.Log("intervalÀÌ ºñ¾î ÀÖ½À´Ï´Ù.");
+            Debug.Log("intervalì´ ë¹„ì–´ ìˆìŠµë‹ˆë‹¤.");
             return;
         }
         for (int i = 0; i < count2; i++)
@@ -122,8 +122,7 @@ public class GoldenCross : MonoBehaviour
     {
         Vector3 maLong = MaCalculation(closingList, longTerm);
         Vector3 maShort = MaCalculation(closingList, shortTerm);
-        //Debug.Log($"maLong : {maLong}" );
-        //Debug.Log($"maShort : {maShort}");
+        
         if (maShort.x <= maLong.x && maShort.y >= maLong.y && maShort.z >= maLong.z)//GoldenCross
         {
             goldenCross.Add(true);

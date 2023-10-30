@@ -8,11 +8,9 @@ using Debug = UnityEngine.Debug;
 public class BollingerBand : MonoBehaviour
 {
     [SerializeField] private Transform bollingerPanel;
-    private List<float> closing20 = new List<float>();//20°³
+    private List<float> closing20 = new List<float>();//20ê°œ
     public static List<TMP_Text> bollingerUpperText = new List<TMP_Text>();
     public static List<TMP_Text> bollingerLowerText = new List<TMP_Text>();
-    //private string[] intervalToUse = { "15m", "5m", "1h", "4h", "1d" };//½Ã°£ ÀÛÀº ¼ø ºÎÅÍ ÀÛ¼º.ui¿ÀºêÁ§Æ®µµ ½Ã°£ ÀÛÀº ¼øÀ¸·Î À§¿¡¼­ ¾Æ·¡·Î ¹èÄ¡ÇØ¾ßÇÔ.
-    //List<TMP_Text>¿¡ ¼ø¼­´ë·Î ³Ö¾î¾ß ¾È²¿ÀÌ±â ¶§¹®ÀÓ.
     private string[] intervalToUse;
     public static List<Vector2> bollinger = new List<Vector2>();
 
@@ -23,7 +21,7 @@ public class BollingerBand : MonoBehaviour
 
         if(count == 0)
         {
-            Debug.Log("intervalÀÌ ºñ¾î ÀÖ½À´Ï´Ù.");
+            Debug.Log("intervalì´ ë¹„ì–´ ìˆìŠµë‹ˆë‹¤.");
             return;
         }
         for(int i = 0; i < count; i++)
@@ -63,7 +61,7 @@ public class BollingerBand : MonoBehaviour
             bollinger.Add(UpperLowerBand(closing20, ma, interval));
         }
     }
-    private float MaCalculation(string _interval, int baseLength)//Ç×»ó 20ÀÏ ¼± ±âÁØÀ¸·Î °è»êÇÑ´Ù.
+    private float MaCalculation(string _interval, int baseLength)//í•­ìƒ 20ì¼ ì„  ê¸°ì¤€ìœ¼ë¡œ ê³„ì‚°í•œë‹¤.
     {
         float price = 0f;
         float sum = 0f;
@@ -141,12 +139,11 @@ public class BollingerBand : MonoBehaviour
 
         for (int i = 0; i < 20; i++)
         {
-            
             float diff = closinglist[i] - ma;
             sumOfSquares += Mathf.Pow(diff, 2);
         }
-        float standardDeviation = Mathf.Sqrt(sumOfSquares / 20f);
-        // »ó´Ü ¹× ÇÏ´Ü ¹êµå °è»ê
+        float standardDeviation = Mathf.Sqrt(sumOfSquares / 20f);//í‘œì¤€í¸ì°¨
+        // ìƒë‹¨ ë° í•˜ë‹¨ ë°´ë“œ ê³„ì‚°
         float upperBand = ma + (standardDeviation * standardDeviationMultiplier);
         float lowerBand = ma - (standardDeviation * standardDeviationMultiplier);
         Vector2 bollingerBand = new Vector2(Mathf.Round(upperBand * 10f) / 10f, Mathf.Round(lowerBand * 10f) / 10f);

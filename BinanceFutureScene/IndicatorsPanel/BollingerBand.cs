@@ -9,9 +9,10 @@ public class BollingerBand : MonoBehaviour
 {
     [SerializeField] private Transform bollingerPanel;
     private List<float> closing20 = new List<float>();//20개
+    private string[] intervalToUse;
+    
     public static List<TMP_Text> bollingerUpperText = new List<TMP_Text>();
     public static List<TMP_Text> bollingerLowerText = new List<TMP_Text>();
-    private string[] intervalToUse;
     public static List<Vector2> bollinger = new List<Vector2>();
 
     void Start()

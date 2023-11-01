@@ -42,16 +42,18 @@ public class FCM_Manager : MonoBehaviour
     public void ReadRealTime(string indicator, string timeFrame)
     {
         readTokenList.Clear();
+        
+        //í´ë¼ì´ì–¸íŠ¸ê°€ ì…ë ¥í•œ ë°ì´í„°ë² ì´ìŠ¤ í˜•ì‹ê³¼ ì„œë²„ ê´€ë¦¬ í”„ë¡œê·¸ë¨ì—ì„œ ì‚¬ìš©í•˜ëŠ” ë°ì´í„° í˜•ì‹ì„ ì¼ì¹˜ì‹œí‚¤ê¸° ìœ„í•´
         if (indicator == "BollingerBandUpper" || indicator == "BollingerBandLower")
             indicator = indicator.Substring(0, indicator.Length - 5);
         else if (indicator == "RSIUpper" || indicator == "RSILower")
             indicator = indicator.Substring(0, indicator.Length - 5);
-        Debug.Log("ReadRealTime : " + indicator);
+            
         reference.Child($"{indicator}_{timeFrame}").GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted || task.IsCanceled)
             {
-                Debug.LogError("¸®¾óÅ¸ÀÓ µ¥ÀÌÅÍº£ÀÌ½º ÀĞ¾î¿À±â ½ÇÆĞ!");
+                Debug.LogError("ë¦¬ì–¼íƒ€ì„ ë°ì´í„°ë² ì´ìŠ¤ ì½ì–´ì˜¤ê¸° ì‹¤íŒ¨!");
                 return;
             }
             DataSnapshot snapshot = task.Result;
@@ -66,14 +68,13 @@ public class FCM_Manager : MonoBehaviour
                     fcmToken = item.Value.ToString();
                     readTokenList.Add(fcmToken);
                 }
-                Debug.Log("½ºÅ¸Æ® ÄÚ·çÆ¾");
                 StartCoroutine(SendToTokens(readTokenList, indicator, timeFrame));
             }
         });
     }
     IEnumerator SendToTokens(List<string> tokens, string indicator, string timeFrame)
     {
-        Debug.Log($"tokens Count : {tokens.Count}");//500°³ ÅäÅ« Á¦ÇÑ ÀÖÀ½. »ç¿ëÇÏ´Â »ç¶÷ ¸¹ÀÌÁö¸é ¸®½ºÆ®¸¦ ¸î¹ø¿¡ °ÉÃÄ 500°³¾¿ requestº¸³»´Â ÄÚµå·Î ¼öÁ¤ÇØ¾ÆÇÔ.
+        Debug.Log($"tokens Count : {tokens.Count}");//500ê°œ í† í° ì œí•œ ìˆìŒ. ì‚¬ìš©í•˜ëŠ” ì‚¬ëŒ ë§ì´ì§€ë©´ ë¦¬ìŠ¤íŠ¸ë¥¼ ëª‡ë²ˆì— ê±¸ì³ 500ê°œì”© requestë³´ë‚´ëŠ” ì½”ë“œë¡œ ìˆ˜ì •í•´ì•„í•¨.
         WWWForm form = new WWWForm();
         string jsonMessage = "[\"" + string.Join("\",\"", tokens) + "\"]";
         Debug.Log(jsonMessage);
@@ -85,18 +86,17 @@ public class FCM_Manager : MonoBehaviour
         yield return request.SendWebRequest();
 
         if (request.result != UnityWebRequest.Result.Success)
-        {/*
-            */
+        {
             Debug.Log(request.error);
         }
         else
         {
             string responseString = System.Text.Encoding.UTF8.GetString(request.downloadHandler.data);
 
-            // ¹®ÀÚ¿­À» JSON °´Ã¼·Î ÆÄ½Ì
+            // ë¬¸ìì—´ì„ JSON ê°ì²´ë¡œ íŒŒì‹±
             var responseObject = JsonUtility.FromJson<ResponseObject>(responseString);
 
-            // 'message' ¼Ó¼º °¡Á®¿À±â
+            // 'message' ì†ì„± ê°€ì ¸ì˜¤ê¸°
             string message = responseObject.message;
             Debug.Log(message);
         }

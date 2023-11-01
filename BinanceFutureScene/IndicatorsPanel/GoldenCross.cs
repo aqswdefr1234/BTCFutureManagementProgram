@@ -9,21 +9,23 @@ public class GoldenCross : MonoBehaviour
 {   //5-20
     [SerializeField] private Transform goldenDeadCrossPanel5_20;
     private List<float> closing5_20 = new List<float>();
-    public static List<TMP_Text> goldenCross5_20Text = new List<TMP_Text>();
-    public static List<TMP_Text> deadCross5_20Text = new List<TMP_Text>();
     private string[] intervalToUse5_20;
     private List<bool> goldenCross5_20 = new List<bool>();
     private List<bool> deadCross5_20 = new List<bool>();
 
+    public static List<TMP_Text> goldenCross5_20Text = new List<TMP_Text>();
+    public static List<TMP_Text> deadCross5_20Text = new List<TMP_Text>();
+    
     //50-200
     [SerializeField] private Transform goldenDeadCrossPanel50_200;
     private List<float> closing50_200 = new List<float>();
-    public static List<TMP_Text> goldenCross50_200Text = new List<TMP_Text>();
-    public static List<TMP_Text> deadCross50_200Text = new List<TMP_Text>();
     private string[] intervalToUse50_200;
     private List<bool> goldenCross50_200 = new List<bool>();
     private List<bool> deadCross50_200 = new List<bool>();
 
+    public static List<TMP_Text> goldenCross50_200Text = new List<TMP_Text>();
+    public static List<TMP_Text> deadCross50_200Text = new List<TMP_Text>();
+    
     void Start()
     {   //5-20
         int count = goldenDeadCrossPanel5_20.childCount;

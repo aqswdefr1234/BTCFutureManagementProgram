@@ -14,7 +14,7 @@ public class FCM_Manager : MonoBehaviour
 {
     private string fcmToken = "";
     private DatabaseReference reference;
-    private const string FCM_URL = "https://sendfcmmessaging.netlify.app/.netlify/functions/fcmmessaging";
+    private const string FCM_URL = "your Url";
     public List<string> readTokenList = new List<string>();
     public static FCM_Manager instance;
 
